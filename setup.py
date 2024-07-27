@@ -196,6 +196,8 @@ def main():
             "-DBUILD_DOCS=OFF",
             "-DPYTHON3_LIMITED_API=ON",
             "-DBUILD_OPENEXR=ON",
+            "-DBUILD_LIST=core,imgcodecs,imgproc,highgui,python",
+            "-DWITH_FFMPEG=OFF"
         ]
         + (
             # CMake flags for windows/arm64 build
