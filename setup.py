@@ -81,7 +81,8 @@ def main():
     # https://stackoverflow.com/questions/1405913/python-32bit-or-64bit-mode
     is64 = sys.maxsize > 2 ** 32
 
-    package_name = "opencv-python"
+    # TODO changed for obscurity
+    package_name = "nopencv-python"
 
     if build_contrib and not build_headless:
         package_name = "opencv-contrib-python"
@@ -110,7 +111,7 @@ def main():
     # Path regexes with forward slashes relative to CMake install dir.
     rearrange_cmake_output_data = {
         "cv2": (
-            [r"bin/opencv_videoio_ffmpeg\d{4}%s\.dll" % ("_64" if is64 else "")]
+            []#[r"bin/opencv_videoio_ffmpeg\d{4}%s\.dll" % ("_64" if is64 else "")]
             if os.name == "nt"
             else []
         )
@@ -137,7 +138,7 @@ def main():
             r"python/cv2/.*config.*.py"
         ]
         +
-        [ r"python/cv2/py.typed" ] if sys.version_info >= (3, 6) else []
+        [ ] if sys.version_info >= (3, 6) else []
         ,
         "cv2.data": [  # OPENCV_OTHER_INSTALL_PATH
             ("etc" if os.name == "nt" else "share/opencv4") + r"/haarcascades/.*\.xml"
@@ -156,8 +157,8 @@ def main():
         ],
     }
 
-    if sys.version_info >= (3, 6):
-        rearrange_cmake_output_data["cv2.typing"] = ["python/cv2" + r"/typing/.*\.py"]
+    #if sys.version_info >= (3, 6):
+    #    rearrange_cmake_output_data["cv2.typing"] = ["python/cv2" + r"/typing/.*\.py"]
 
     # Files in sourcetree outside package dir that should be copied to package.
     # Raw paths relative to sourcetree root.
@@ -196,8 +197,7 @@ def main():
             "-DBUILD_DOCS=OFF",
             "-DPYTHON3_LIMITED_API=ON",
             "-DBUILD_OPENEXR=ON",
-            "-DBUILD_LIST=core,imgcodecs,imgproc,highgui,python",
-            "-DWITH_FFMPEG=OFF"
+            "-DBUILD_LIST=python3,core,imgcodecs,imgproc,highgui",
         ]
         + (
             # CMake flags for windows/arm64 build
@@ -275,14 +275,14 @@ def main():
     setup(
         name=package_name,
         version=package_version,
-        url="https://github.com/opencv/opencv-python",
-        license="Apache 2.0",
-        description="Wrapper package for OpenCV python bindings.",
-        long_description=long_description,
-        long_description_content_type="text/markdown",
+        #url="https://github.com/opencv/opencv-python",
+        #license="Apache 2.0",
+        #description="Wrapper package for OpenCV python bindings.",
+        #long_description=long_description,
+        #long_description_content_type="text/markdown",
         packages=packages,
         package_data=package_data,
-        maintainer="OpenCV Team",
+        #maintainer="OpenCV Team",
         ext_modules=EmptyListWithLength(),
         install_requires=install_requires,
         python_requires=">=3.6",
