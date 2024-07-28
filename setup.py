@@ -198,6 +198,17 @@ def main():
             "-DPYTHON3_LIMITED_API=ON",
             "-DBUILD_OPENEXR=ON",
             "-DBUILD_LIST=python3,core,imgcodecs,imgproc,highgui",
+            "-DWITH_FFMPEG=OFF",
+            "-DWITH_GSTREAMER=OFF",
+            "-DWITH_MSMF=OFF",
+            "-DWITH_DSHOW=OFF",
+            "-DWITH_IPP=OFF",
+            "-DWITH_ITT=OFF",
+            "-DWITH_OPENCL=OFF",
+            "-DWITH_TIFF=OFF",
+            "-DWITH_WEBP=OFF",
+            "-DWITH_JASPER=OFF",
+            "-DWITH_OPENEXR=OFF",
         ]
         + (
             # CMake flags for windows/arm64 build
