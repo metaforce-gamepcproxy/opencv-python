@@ -1,6 +1,7 @@
 [submodule "opencv"]
 	path = opencv
 	url = https://github.com/metaforce-gamepcproxy/opencv.git
+	branch = old3
 [submodule "opencv_contrib"]
 	path = opencv_contrib
 	url = https://github.com/opencv/opencv_contrib.git
